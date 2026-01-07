@@ -8,26 +8,30 @@ const textarea = document.getElementById('fileOutput');
 const fileInput = document.getElementById('fileInput');
 const treeView = document.getElementById('treeView');
 let downloadable = false;
+let archiveUrl = location.href.split('?archiveUrl=')[1];
 
 Archive.init({
     workerUrl: 'public/worker-bundle.js',
 });
 
-if (location.href.split('?archiveUrl=')[1]) {
-    fetch(location.href.split('?archiveUrl=')[1]).then(response => {
-            return response.blob();
-        })
-        .then(async (blob) => {
-            const archive = await Archive.open(blob);
-            let obj = await archive.extractFiles();
-            treeView.innerHTML = '';
-            walk({
-                node: obj,
-                liId: 'treeView',
-                name: 'externalArchive'
-            });
-            openFirstFolder();
-        }).catch(error => alert("Sorry, we couldn't download the data archive"));
+if (archiveUrl) {
+    if (archiveUrl.indexOf('mpds://') !== -1) {
+        archiveUrl = archiveUrl.replace('mpds://', 'https://mpds.io/');
+    }
+
+    fetch(archiveUrl).then(response => {
+        return response.blob();
+    }).then(async (blob) => {
+        const archive = await Archive.open(blob);
+        let obj = await archive.extractFiles();
+        treeView.innerHTML = '';
+        walk({
+            node: obj,
+            liId: 'treeView',
+            name: 'externalArchive'
+        });
+        openFirstFolder();
+    }).catch(error => alert("Sorry, we couldn't download the data archive"));
 }
 
 fileInput.addEventListener('change', async (e) => {
