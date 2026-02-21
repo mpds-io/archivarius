@@ -1,6 +1,7 @@
-# 7zip.html
+# Archivarius
 
 A tool to browse 7zip archives online in the web-browsers.
+Mainly used to serve scientific content (simulation logs) from the static archives on [MPDS platform](https://mpds.io).
 
 
 ## Getting Started
@@ -30,9 +31,10 @@ A step by step series of examples that tell you how to get a development env run
 
 ## Authors
 
+- [**Evgeny Blokhin**](https://github.com/blokhin)
 - [**Matvii Hodovaniuk**](https://github.com/hodovani)
 
 
 ## License
 
-This project is licensed under the [MIT](LICENSE.md) - see the [LICENSE.md](LICENSE.md) file for details
+This project is licensed under the [MIT](LICENSE.md), see the [LICENSE.md](LICENSE.md) file for details

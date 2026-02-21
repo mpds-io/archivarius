@@ -1,0 +1,28 @@
+name: deploy unzip.mpds.io
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  build-then-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Install
+        run: |
+          npm install
+
+      - name: Build
+        run: |
+          npm run build
+          npm list
+
+      - name: Deploy
+        uses: JamesIves/github-pages-deploy-action@4
+        with:
+          branch: gh-pages
+          folder: dist
