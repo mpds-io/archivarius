@@ -93,5 +93,9 @@ textarea {
   font-weight: bold;
 }
 
+@media all and (max-width:1000px){
+    body {width: 680px;}
+}
+
 
 /*# sourceMappingURL=bundle.css.map*/
